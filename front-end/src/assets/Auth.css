@@ -1,0 +1,27 @@
+.main-container {
+  background-color: #b0e0e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.card-container {
+  margin-bottom: 20px;
+}
+
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-button {
+  border-radius: 12px !important;
+}
