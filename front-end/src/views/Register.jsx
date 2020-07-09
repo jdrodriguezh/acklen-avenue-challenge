@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Container, Card, Form, Button, Row, Col } from "react-bootstrap"; 
+import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
+import "../assets/Auth.css";
+
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
