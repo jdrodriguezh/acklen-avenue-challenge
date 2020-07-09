@@ -1,6 +1,7 @@
 import React from "react";
-import { Navbar, Container } from "react-bootstrap";
+import { Navbar, Container, Row, Col, Card, Button } from "react-bootstrap";
 import "../assets/Home.css";
+import collections from "./Collections";
 
 const Home = () => {
   return(
@@ -16,8 +17,26 @@ const Home = () => {
           />{` My App`}
         </Navbar.Brand>
       </Navbar>
-      <Container fluid>
-        <h1>Home</h1>
+      <Container className="main-container" fluid>
+        <Container className="collections-container" fluid>
+          <Row>
+            {collections.map(collection => {
+              return(
+                <Col lg={3} xs={12}>
+                  <Card className="collection-card">
+                    <Card.Body>
+                      <Card.Title>{collection.name}</Card.Title>
+                      <Card.Text>{collection.description}</Card.Text>
+                      <div className="button-container">
+                        <Button>Check</Button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              )
+            })}
+          </Row>
+        </Container>
       </Container>
         
     </>

@@ -1,0 +1,23 @@
+.main-container {
+  background-color: #b0e0e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: fit-content;
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+}
+
+.collections-container{
+  background-color: red;
+  height: 100%;
+}
+
+.collection-card{
+  margin: 10px;
+}
+
+.button-container{
+  display: flex;
+  float: right;
+}
