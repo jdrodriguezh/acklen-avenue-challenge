@@ -1,0 +1,26 @@
+.main-container {
+  background-color: #b0e0e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100% !important;
+  min-height: 100vh0;
+  max-height: fit-content;
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+}
+
+.inner-container{
+  background-color: cyan;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.first-line {
+  width:100%;
+}
+
+.table-style{
+  background-color: white;
+  margin-right: 20px;
+}

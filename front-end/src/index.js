@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import App from "./views/App";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "./views/Home";
 import Login from "./views/Login"
 import Register from "./views/Register"
@@ -16,11 +15,11 @@ const hist = createBrowserHistory();
 ReactDOM.render(
   <BrowserRouter history={hist}>
     <Switch>
-      <Route exact path="/" component={App} />
       <Route path="/home" component={Home} />
       <Route path="/login" component={Login}/>
       <Route path="/register" component={Register}/>
       <Route path="/collection/:id" component={Collection}/>
+      <Redirect path="/" to="/home"/>
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
