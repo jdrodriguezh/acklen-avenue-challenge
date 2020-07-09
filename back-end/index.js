@@ -13,9 +13,11 @@ const app = express();
 mongoose.connect("mongodb://159.89.156.23:27017/acklen",{
   useNewUrlParser: true,
   useUnifiedTopology: true,
-},(error) => {
-  console.log(error ? `Error detected: ${error}`:`No errors detected in MongoDB`);
-});
+}).then(()=>{
+  console.log("No errors detected in MongoDB");
+}).catch(error => {
+  console.log(`Error detected: ${error}`);
+})
 
 app.use(cors());
 app.use(body.urlencoded({extended: true}));
