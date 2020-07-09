@@ -18,6 +18,24 @@
 
 .collection-card{
   margin: 10px;
+  flex: 1;
+}
+
+.collection-card:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 400ms;
+  background-color: #F6F6F6;
+  margin: 10px;
+  flex: 1;
+}
+
+.row-style {
+  display: flex;
+}
+
+.col-style {
+  display: flex;
 }
 
 .add-collection-card{
@@ -25,21 +43,30 @@
   align-items: center;
   justify-content: center;
   margin: 10px;
-  height: 180px;
+  flex: 1;
 }
 
 .add-collection-card:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 400ms;
   background-color: #F6F6F6;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 10px;
-  height: 180px;
+}
+
+.add-collection-cardbody{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .button-container{
   display: flex;
-  float: right;
+  justify-content: flex-end;
 }
 
 .center-icon{

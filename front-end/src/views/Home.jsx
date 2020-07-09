@@ -30,14 +30,14 @@ const Home = () => {
       <CustomNavbar />
       <Container className="main-container" fluid>
         <Container className="collections-container" fluid>
-          <Row>
-            <Col lg={3} md={6} xs={12}>
+          <Row className="row-style">
+            <Col lg={3} md={6} xs={12} className="col-style">
               <Card
                 className="add-collection-card"
                 onClick={() => {
                   toggleModal();
                 }}>
-                <Card.Body>
+                <Card.Body className="add-collection-cardbody">
                   <Card.Title>Add Collection</Card.Title>
                   <div className="center-icon">
                     <FontAwesomeIcon icon={faPlus} size="3x" />
@@ -47,7 +47,7 @@ const Home = () => {
             </Col>
             {collections.map((collection) => {
               return (
-                <Col lg={3} md={6} xs={12}>
+                <Col lg={3} md={6} xs={12} className="col-style">
                   <Card className="collection-card">
                     <Card.Body>
                       <Card.Title>{collection.name}</Card.Title>
