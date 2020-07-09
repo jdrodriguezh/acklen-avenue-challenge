@@ -1,21 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createBrowserHistory } from "history";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import App from "./views/App";
 import Home from "./views/Home";
 import Login from "./views/Login"
 import Register from "./views/Register"
+import Collection from "./views/Collection";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/index.css";
 import * as serviceWorker from "./serviceWorker";
 
+const hist = createBrowserHistory();
+
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter history={hist}>
     <Switch>
       <Route exact path="/" component={App} />
       <Route path="/home" component={Home} />
       <Route path="/login" component={Login}/>
       <Route path="/register" component={Register}/>
+      <Route path="/collection/:id" component={Collection}/>
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

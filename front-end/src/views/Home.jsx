@@ -1,46 +1,51 @@
 import React from "react";
-import { Navbar, Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import CustomNavbar from "../components/CustomNavbar";
 import "../assets/Home.css";
 import collections from "./Collections";
 
 const Home = () => {
-  return(
+  return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/home">
-          <img
-            alt="Logo"
-            src="/favicon.ico"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{` My App`}
-        </Navbar.Brand>
-      </Navbar>
+      <CustomNavbar />
       <Container className="main-container" fluid>
         <Container className="collections-container" fluid>
           <Row>
-            {collections.map(collection => {
-              return(
-                <Col lg={3} xs={12}>
+            <Col lg={3} md={6} xs={12}>
+              <Card className="add-collection-card" onClick={()=>{console.log("hols")}}>
+                <Card.Body>
+                  <Card.Title>Add Collection</Card.Title>
+                  <div className="center-icon">
+                    <FontAwesomeIcon icon={faPlus} size="3x"/>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+            {collections.map((collection) => {
+              return (
+                <Col lg={3} md={6} xs={12}>
                   <Card className="collection-card">
                     <Card.Body>
                       <Card.Title>{collection.name}</Card.Title>
                       <Card.Text>{collection.description}</Card.Text>
                       <div className="button-container">
-                        <Button>Check</Button>
+                        <Link to={`collection/${collection.id}`}>
+                          <Button>Check</Button>
+                        </Link>
                       </div>
                     </Card.Body>
                   </Card>
                 </Col>
-              )
+              );
             })}
           </Row>
         </Container>
       </Container>
-        
     </>
-  )
-}
+  );
+};
 
 export default Home;

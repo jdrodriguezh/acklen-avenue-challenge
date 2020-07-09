@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100% !important;
   max-height: fit-content;
   padding-left: 5% !important;
   padding-right: 5% !important;
@@ -17,7 +18,39 @@
   margin: 10px;
 }
 
+.add-collection-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  height: 180px;
+}
+
+.add-collection-card:hover{
+  background-color: #F6F6F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  height: 180px;
+}
+
 .button-container{
   display: flex;
   float: right;
+}
+
+.center-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.link{
+  color: white;
+}
+
+.link:hover{
+  color: white;
 }
