@@ -15,6 +15,7 @@ const Home = () => {
     setShowModal(!showModal);
   };
   const handleSubmit = () => {
+    console.log(`Collection name: ${collectionName} Collection description: ${collectionDescription}`);
     setCollectionName("");
     setCollectionDescription("");
     toggleModal();
@@ -99,10 +100,18 @@ const Home = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={()=>{handleCancel()}}>
+          <Button
+            variant="danger"
+            onClick={() => {
+              handleCancel();
+            }}>
             Cancel
           </Button>
-          <Button variant="success" onClick={()=>{handleSubmit()}}>
+          <Button
+            variant="success"
+            onClick={() => {
+              handleSubmit();
+            }}>
             Add!
           </Button>
         </Modal.Footer>
