@@ -7,12 +7,12 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../views/Loading";
 import CustomNavbar from "../components/CustomNavbar";
 import "../assets/Home.css";
-import collections from "./Collections";
+//import collections from "./Collections";
 import BASE_URL from "./Variables";
 
 const Home = () => {
   const { user, isLoading } = useAuth0();
-  //const [collections, setCollection] = useState([]);
+  const [collections, setCollections] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
@@ -24,7 +24,7 @@ const Home = () => {
       name: collectionName,
       creationDate: new Date(),
       description: collectionDescription,
-      user: user.nickname,
+      user: user.sub,
     };
     fetch(`${BASE_URL}collections/`, {
       method: "post",
@@ -35,6 +35,7 @@ const Home = () => {
     })
       .then((resp) => resp.json())
       .then((json) => {
+        setCollections([...collections, json])
         console.log(json);
       });
     console.log(
@@ -49,18 +50,6 @@ const Home = () => {
     setCollectionDescription("");
     toggleModal();
   };
-  const loadContent = () => {
-    fetch(`${BASE_URL}collections/${user.sub}`, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json)
-      .then((json) => {
-        console.log(json);
-      });
-  }
   useEffect(() => {
     console.log(user.sub)
     fetch(`${BASE_URL}collections/${user.sub}`, {
@@ -69,9 +58,12 @@ const Home = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((resp) => resp.json)
+      .then((resp) => resp.json())
       .then((json) => {
+        setCollections(json);
         console.log(json);
+      }).catch(error => {
+        console.log(error)
       });
   }, [user]);
   if (isLoading) {
@@ -106,7 +98,7 @@ const Home = () => {
                       <Card.Title>{collection.name}</Card.Title>
                       <Card.Text>{collection.description}</Card.Text>
                       <div className="button-container">
-                        <Link to={`collection/${collection.id}`}>
+                        <Link to={`collection/${collection._id}`}>
                           <Button>Check</Button>
                         </Link>
                       </div>
