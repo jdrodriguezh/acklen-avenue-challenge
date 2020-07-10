@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Modal, Form } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CustomNavbar from "../components/CustomNavbar";
 import "../assets/Collection.css";
 //import items from "./Items";
@@ -62,7 +64,6 @@ const Collection = (props) => {
     })
       .then((resp) => resp.json())
       .then((json) => {
-        console.log(json);
         setItems(json);
       })
       .catch((error) => {
@@ -109,6 +110,7 @@ const Collection = (props) => {
                   <th>Found at</th>
                   <th>Year</th>
                   <th>Estimated value</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -119,7 +121,23 @@ const Collection = (props) => {
                       <td key={`${index}B`}>{item.condition}</td>
                       <td key={`${index}C`}>{item.location}</td>
                       <td key={`${index}D`}>{item.year}</td>
-                      <td key={`${index}E1`}>${item.estimatedValue}</td>
+                      <td key={`${index}E`}>${item.estimatedValue}</td>
+                      <td key={`${index}F`}>
+                        <FontAwesomeIcon
+                          className="modify-icon"
+                          icon={faEdit}
+                          onClick={() => {
+                            console.log("modificar");
+                          }}
+                        />
+                        <FontAwesomeIcon
+                          className="delete-icon"
+                          icon={faTrash}
+                          onClick={() => {
+                            console.log("eliminar");
+                          }}
+                        />
+                      </td>
                     </tr>
                   );
                 })}

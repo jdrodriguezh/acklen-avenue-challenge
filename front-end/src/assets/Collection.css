@@ -20,3 +20,25 @@
   background-color: white;
   margin-right: 20px;
 }
+
+.delete-icon {
+  margin: 5px;
+}
+
+.delete-icon:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  transition: transform 400ms;
+  color: red;
+}
+
+.modify-icon {
+  margin: 5px;
+}
+
+.modify-icon:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  transition: transform 400ms;
+  color:green;
+}
