@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import ProtectedRoute from "./layout/ProtectedRoute"
+import ProtectedRoute from "./layout/ProtectedRoute";
 import Home from "./views/Home";
 import Collection from "./views/Collection";
 import Landing from "./views/Landing";
@@ -15,19 +15,19 @@ import { Auth0Provider } from "@auth0/auth0-react";
 const hist = createBrowserHistory();
 
 ReactDOM.render(
-  <Auth0Provider
-    domain="dev-n811rh5t.us.auth0.com"
-    clientId="BzuseeOC8D7PCNdss351qRyDF2AqqXlz"
-    redirectUri={window.location.origin}>
-    <BrowserRouter history={hist}>
+  <BrowserRouter history={hist}>
+    <Auth0Provider
+      domain="dev-n811rh5t.us.auth0.com"
+      clientId="BzuseeOC8D7PCNdss351qRyDF2AqqXlz"
+      redirectUri={window.location.origin}>
       <Switch>
-        <Route path="/home" component={Home} />
-        <Route path="/collection/:id" component={Collection} />
+        <ProtectedRoute path="/home" component={Home} />
+        <ProtectedRoute path="/collection/:id" component={Collection} />
         <Route path="/landing" component={Landing} />
         <Redirect path="/" to="/home" />
       </Switch>
-    </BrowserRouter>
-  </Auth0Provider>,
+    </Auth0Provider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

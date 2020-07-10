@@ -13,9 +13,9 @@ collection.post("/", (req, res) => {
     });
 });
 
-collection.get("/", (req, res) => {
-  const { body } = req;
-  Collection.find({ user: body.user }, (error, data) => {
+collection.get("/:id", (req, res) => {
+  const { id } = req.params;
+  Collection.find({ user: id }, (error, data) => {
     if (error) {
       res.status(500).json({ error });
     } else {

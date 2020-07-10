@@ -11,7 +11,7 @@ import collections from "./Collections";
 import BASE_URL from "./Variables";
 
 const Home = () => {
-  const { user } = useAuth0();
+  const { user, isLoading } = useAuth0();
   //const [collections, setCollection] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
@@ -49,28 +49,34 @@ const Home = () => {
     setCollectionDescription("");
     toggleModal();
   };
-  /*useEffect(() => {
-    (async () => {
-      try{
-        const loggedUser = await user;
-        fetch(`${BASE_URL}collections/`, {
-          method: "get",
-          body: JSON.stringify({ user: loggedUser.nickname }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((resp) => resp.json)
-          .then((json) => {
-            console.log(json);
-          });
-      } catch (error) {
-        console.log(error)
-      }
-    })();
-  }, [user]);*/
-  if(!user){
-    return <Loading/>;
+  const loadContent = () => {
+    fetch(`${BASE_URL}collections/${user.sub}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json)
+      .then((json) => {
+        console.log(json);
+      });
+  }
+  useEffect(() => {
+    console.log(user.sub)
+    fetch(`${BASE_URL}collections/${user.sub}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json)
+      .then((json) => {
+        console.log(json);
+      });
+  }, [user]);
+  if (isLoading) {
+    return <Loading />;
+
   }
   return (
     <>
