@@ -38,7 +38,7 @@ const Collection = (props) => {
     })
       .then((resp) => resp.json())
       .then((json) => {
-        setItems([...items, json])
+        setItems([...items, json]);
       });
     setItemName("");
     setItemCondition("");
@@ -62,7 +62,7 @@ const Collection = (props) => {
     })
       .then((resp) => resp.json())
       .then((json) => {
-        console.log(json)
+        console.log(json);
         setItems(json);
       })
       .catch((error) => {
@@ -100,30 +100,34 @@ const Collection = (props) => {
           </h1>
           <h3>{collectionDescription}</h3>
           <br />
-          <Table className="table-style" responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Condition</th>
-                <th>Found at</th>
-                <th>Year</th>
-                <th>Estimated value</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item, index) => {
-                return (
-                  <tr key={`${index}1`}>
-                    <td key={`${index}A`}>{item.name}</td>
-                    <td key={`${index}B`}>{item.condition}</td>
-                    <td key={`${index}C`}>{item.location}</td>
-                    <td key={`${index}D`}>{item.year}</td>
-                    <td key={`${index}E1`}>${item.estimatedValue}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
+          {items.length > 0 ? (
+            <Table className="table-style" responsive>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Condition</th>
+                  <th>Found at</th>
+                  <th>Year</th>
+                  <th>Estimated value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((item, index) => {
+                  return (
+                    <tr key={`${index}1`}>
+                      <td key={`${index}A`}>{item.name}</td>
+                      <td key={`${index}B`}>{item.condition}</td>
+                      <td key={`${index}C`}>{item.location}</td>
+                      <td key={`${index}D`}>{item.year}</td>
+                      <td key={`${index}E1`}>${item.estimatedValue}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          ) : (
+            <h1>This collection has no elements. Go find some!</h1>
+          )}
         </Container>
       </Container>
       <Modal
