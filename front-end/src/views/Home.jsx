@@ -6,11 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../views/Loading";
 import CustomNavbar from "../components/CustomNavbar";
+import CollectionCard from "../components/CollectionCard"
 import "../assets/Home.css";
 //import collections from "./Collections";
 import BASE_URL from "./Variables";
 
-const Home = () => {
+const Home = (props) => {
   const { user, isLoading } = useAuth0();
   const [collections, setCollections] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -35,12 +36,8 @@ const Home = () => {
     })
       .then((resp) => resp.json())
       .then((json) => {
-        setCollections([...collections, json])
-        console.log(json);
+        setCollections([...collections, json]);
       });
-    console.log(
-      `Collection name: ${collectionName} Collection description: ${collectionDescription}`
-    );
     setCollectionName("");
     setCollectionDescription("");
     toggleModal();
@@ -51,7 +48,6 @@ const Home = () => {
     toggleModal();
   };
   useEffect(() => {
-    console.log(user.sub)
     fetch(`${BASE_URL}collections/${user.sub}`, {
       method: "get",
       headers: {
@@ -61,15 +57,15 @@ const Home = () => {
       .then((resp) => resp.json())
       .then((json) => {
         setCollections(json);
-        console.log(json);
-      }).catch(error => {
-        console.log(error)
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, [user]);
   if (isLoading) {
     return <Loading />;
-
   }
+  console.log(`Home: ${JSON.stringify(props)}`)
   return (
     <>
       <CustomNavbar />
@@ -93,17 +89,7 @@ const Home = () => {
             {collections.map((collection) => {
               return (
                 <Col lg={3} md={6} xs={12} className="col-style">
-                  <Card className="collection-card">
-                    <Card.Body>
-                      <Card.Title>{collection.name}</Card.Title>
-                      <Card.Text>{collection.description}</Card.Text>
-                      <div className="button-container">
-                        <Link to={`collection/${collection._id}`}>
-                          <Button>Check</Button>
-                        </Link>
-                      </div>
-                    </Card.Body>
-                  </Card>
+                  <CollectionCard name={collection.name} description={collection.description} id={collection._id} history={props.history}/>
                 </Col>
               );
             })}
