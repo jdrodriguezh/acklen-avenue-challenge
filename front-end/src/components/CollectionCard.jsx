@@ -1,6 +1,8 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import "../assets/Home.css";
+import treasure from "../assets/images/treasure.svg";
+import coin from "../assets/images/money.svg";
+import "../assets/Card.css";
 
 const CollectionCard = (props) => {
   const { history, name, description, id } = props;
@@ -10,10 +12,24 @@ const CollectionCard = (props) => {
       onClick={() => {
         history.push(`collection/${id}`);
       }}>
-      <Card.Body>
+      <div className="head">
         <Card.Title>{name}</Card.Title>
-        <Card.Text>{description}</Card.Text>
+      </div>
+      <div className="yellow-division"></div>
+      <Card.Body className="c-body">
+        <Card.Text>
+          <strong>{description}</strong>
+        </Card.Text>
       </Card.Body>
+      <div className="image-container">
+        <div className="treasure-logo">
+          <img src={treasure} alt="Treasure" />
+        </div>
+        <div className="coin-logo">
+          <img src={coin} alt="Treasure" />
+        </div>
+      </div>
+      <div className="blue-footer"></div>
     </Card>
   );
 };

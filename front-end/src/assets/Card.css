@@ -1,0 +1,55 @@
+.collection-card {
+  margin: 10px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.collection-card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 400ms;
+  background-color: #f6f6f6;
+  margin: 10px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.head {
+  color: white;
+  background-color: #e8505b;
+  height: 40px;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+.c-body {
+  background-color: #f8f3d4;
+}
+
+.yellow-division {
+  background-color: #f9d56e;
+  height: 10px;
+}
+
+.blue-footer {
+  background-color: #14b1ab;
+  height: 20px;
+}
+
+.image-container{
+  background-color: #f8f3d4;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 20px;
+}
+
+.treasure-logo img{
+  width: 40px;
+}
+
+.coin-logo img{
+  width: 50px;
+  position: relative;
+  top: 4px;
+}
