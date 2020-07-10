@@ -6,6 +6,7 @@ const body = require("body-parser");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
+const collections = require("./routers/Collections")
 const PORT = 8080;
 
 const app = express();
@@ -35,6 +36,9 @@ const accessLogStream = fs.createWriteStream(
   }
 );
 app.use(morgan("tiny",{stream: accessLogStream}));
+
+app.use("/collections",collections);
+
 app.listen(PORT, () => {
   console.log(`Back-end running on PORT: ${PORT}`)
 });

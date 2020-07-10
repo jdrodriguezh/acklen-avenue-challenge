@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Modal, Form } from "react-bootstrap";
+import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import CustomNavbar from "../components/CustomNavbar";
@@ -8,6 +9,7 @@ import "../assets/Home.css";
 import collections from "./Collections";
 
 const Home = () => {
+  const { user } = useAuth0();
   const [showModal, setShowModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
@@ -15,6 +17,19 @@ const Home = () => {
     setShowModal(!showModal);
   };
   const handleSubmit = () => {
+    const body = {
+      name: collectionName,
+      creationDate: new Date(),
+      description: collectionDescription,
+      user: user.nickname
+    }
+    fetch("http://localhost:8080/collections/",{
+      method:"post",
+      body: JSON.stringify(body),
+      headers:{
+        "Content-Type":"application/json"
+      },
+    }).then((resp) => resp.json()).then((json)=>{console.log(json)})
     console.log(`Collection name: ${collectionName} Collection description: ${collectionDescription}`);
     setCollectionName("");
     setCollectionDescription("");
@@ -81,7 +96,7 @@ const Home = () => {
               <Form.Label>Collection Name</Form.Label>
               <Form.Control
                 type="text"
-                placeHolder="Collection Name"
+                placeholder="Collection Name"
                 onChange={(evt) => {
                   setCollectionName(evt.target.value);
                 }}
@@ -91,7 +106,7 @@ const Home = () => {
               <Form.Label>Collection Description</Form.Label>
               <Form.Control
                 type="textarea"
-                placeHolder="Collection Name"
+                placeholder="Collection Name"
                 onChange={(evt) => {
                   setCollectionDescription(evt.target.value);
                 }}

@@ -14,7 +14,8 @@ collection.post("/", (req, res) => {
 });
 
 collection.get("/", (req, res) => {
-  Collection.find({},(error, data)=>{
+  const { user } = req.params;
+  Collection.find({user:user},(error, data)=>{
     if(error){
       res.status(500).json({error});
     }else{
@@ -22,3 +23,14 @@ collection.get("/", (req, res) => {
     }
   });
 });
+
+collection.delete("/:id",(req,res)=>{
+  const { id } = req.params;
+  Collection.deleteOne({_id:id}).then(data => {
+    res.status(200).send(data);
+  }).catch(error =>{
+    res.status(500).json({err, success: false});
+  });
+});
+
+module.exports = collection;
