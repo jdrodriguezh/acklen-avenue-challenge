@@ -1,10 +1,12 @@
 import React from "react";
 import { Navbar, Button } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
+import logo from "../assets/images/diamond.svg";
+import "../assets/Navbar.css";
 
 const CustomNavbar = (props) => {
   const { history } = props;
-  const { loginWithPopup, logout, user } = useAuth0();
+  const { loginWithPopup, logout, isAuthenticated } = useAuth0();
   const handleAuth = () => {
     loginWithPopup()
       .then(() => {
@@ -15,27 +17,15 @@ const CustomNavbar = (props) => {
       });
   };
   const handleLogout = () => {
-    logout()
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    logout();
   };
   return (
-    <Navbar bg="dark" variant="dark" className="justify-content-between">
-      <Navbar.Brand href="/home">
-        <img
-          alt="Logo"
-          src="/favicon.ico"
-          width="30"
-          height="30"
-          className="d-inline-block align-top"
-        />
-        {` My App`}
+    <Navbar className="justify-content-between nav">
+      <Navbar.Brand href="/home" className="brand">
+        <img alt="Logo" src={logo} width="40" height="40" className="d-inline-block align-top"/>
+        {' Treasure Keeper'}
       </Navbar.Brand>
-      {user ? (
+      {isAuthenticated ? (
         <Button
           variant="danger"
           onClick={() => {
@@ -45,20 +35,13 @@ const CustomNavbar = (props) => {
         </Button>
       ) : (
         <Button
-          variant="outline-primary"
+          variant="primary"
           onClick={() => {
             handleAuth();
           }}>
           Login
         </Button>
       )}
-      <Button
-        variant="danger"
-        onClick={() => {
-          console.log(user);
-        }}>
-        USER
-      </Button>
     </Navbar>
   );
 };
