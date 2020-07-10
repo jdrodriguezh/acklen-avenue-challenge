@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Modal, Form } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../views/Loading";
 import CustomNavbar from "../components/CustomNavbar";
-import CollectionCard from "../components/CollectionCard"
+import CollectionCard from "../components/CollectionCard";
 import "../assets/Home.css";
-//import collections from "./Collections";
 import BASE_URL from "./Variables";
 
 const Home = (props) => {
+  const { history } = props;
   const { user, isLoading } = useAuth0();
   const [collections, setCollections] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -65,7 +64,6 @@ const Home = (props) => {
   if (isLoading) {
     return <Loading />;
   }
-  console.log(`Home: ${JSON.stringify(props)}`)
   return (
     <>
       <CustomNavbar />
@@ -89,7 +87,12 @@ const Home = (props) => {
             {collections.map((collection) => {
               return (
                 <Col lg={3} md={6} xs={12} className="col-style">
-                  <CollectionCard name={collection.name} description={collection.description} id={collection._id} history={props.history}/>
+                  <CollectionCard
+                    name={collection.name}
+                    description={collection.description}
+                    id={collection._id}
+                    history={history}
+                  />
                 </Col>
               );
             })}

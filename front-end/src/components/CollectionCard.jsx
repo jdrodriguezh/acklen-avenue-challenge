@@ -4,12 +4,11 @@ import "../assets/Home.css";
 
 const CollectionCard = (props) => {
   const { history, name, description, id } = props;
-  console.log(props);
   return (
     <Card
       className="collection-card"
       onClick={() => {
-        history.push(`collection/${props.id}`);
+        history.push(`collection/${id}`);
       }}>
       <Card.Body>
         <Card.Title>{name}</Card.Title>

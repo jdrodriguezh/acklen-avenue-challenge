@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
 import ProtectedRoute from "./layout/ProtectedRoute";
 import Home from "./views/Home";
 import Collection from "./views/Collection";
@@ -9,8 +10,6 @@ import Landing from "./views/Landing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/index.css";
 import * as serviceWorker from "./serviceWorker";
-
-import { Auth0Provider } from "@auth0/auth0-react";
 
 const hist = createBrowserHistory();
 

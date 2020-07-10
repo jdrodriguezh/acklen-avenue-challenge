@@ -6,8 +6,8 @@ import Loading from "../views/Loading";
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { isAuthenticated, isLoading } = useAuth0();
 
-  if(isLoading){
-    return <Loading/>
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (

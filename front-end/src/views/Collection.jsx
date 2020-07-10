@@ -28,7 +28,14 @@ const Collection = () => {
       <Container className="main-container" fluid>
         <Container className="inner-container" fluid>
           <h1>
-            Collection 1 <Button variant="success" onClick={()=>{toggleModal()}}>Add entry</Button>
+            Collection 1{" "}
+            <Button
+              variant="success"
+              onClick={() => {
+                toggleModal();
+              }}>
+              Add entry
+            </Button>
           </h1>
           <h3>Aliqua culpa laborum incididunt dolore deserunt consequat eiusmod.</h3>
           <br />

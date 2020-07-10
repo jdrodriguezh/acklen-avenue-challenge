@@ -2,12 +2,13 @@ import React from "react";
 import { Navbar, Button } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const CustomNavbar = () => {
+const CustomNavbar = (props) => {
+  const { history } = props;
   const { loginWithPopup, logout, user } = useAuth0();
   const handleAuth = () => {
     loginWithPopup()
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        history.push("/home");
       })
       .catch((error) => {
         console.log(error);

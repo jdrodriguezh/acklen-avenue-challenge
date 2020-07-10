@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
 
 const collectionSchema = new mongoose.Schema({
-  name:{
-    type:String,
-    required: true,
-  },
-  user:{
+  name: {
     type: String,
     required: true,
   },
-  description:{
-    type:String,
+  user: {
+    type: String,
     required: true,
   },
-  creationDate:{
-    type:Date,
+  description: {
+    type: String,
+    required: true,
+  },
+  creationDate: {
+    type: Date,
     required: true,
   },
 });
