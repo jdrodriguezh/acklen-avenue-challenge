@@ -83,3 +83,14 @@
 .link:hover{
   color: white;
 }
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.spinner{
+  margin: 10px;
+}

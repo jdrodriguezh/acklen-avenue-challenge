@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button, Modal, Form } from "react-bootstrap"
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Loading from "../views/Loading";
 import CustomNavbar from "../components/CustomNavbar";
 import "../assets/Home.css";
 import collections from "./Collections";
@@ -69,7 +70,7 @@ const Home = () => {
     })();
   }, [user]);*/
   if(!user){
-    return <h1>Loading...</h1>;
+    return <Loading/>;
   }
   return (
     <>
