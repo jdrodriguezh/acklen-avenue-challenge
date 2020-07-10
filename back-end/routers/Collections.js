@@ -24,6 +24,17 @@ collection.get("/:id", (req, res) => {
   });
 });
 
+collection.get("/getById/:id", (req, res) => {
+  const { id } = req.params;
+  Collection.find({ _id: id }, (error, data) => {
+    if (error) {
+      res.status(500).json({ error });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
+
 collection.delete("/:id", (req, res) => {
   const { id } = req.params;
   Collection.deleteOne({ _id: id })
