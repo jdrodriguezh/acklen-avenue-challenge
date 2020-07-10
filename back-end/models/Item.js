@@ -17,6 +17,10 @@ const itemSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  estimatedValue: {
+    type: Number,
+    required: true,
+  },
   collectionId: {
     type: String,
     required: true,

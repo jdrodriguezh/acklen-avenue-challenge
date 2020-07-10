@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Modal, Form } from "react-bootstrap";
 import CustomNavbar from "../components/CustomNavbar";
 import "../assets/Collection.css";
-import items from "./Items";
+//import items from "./Items";
 import BASE_URL from "./Variables";
 
 const Collection = (props) => {
   const { match } = props;
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
+  const [items, setItems] = useState([]);
   const [itemName, setItemName] = useState("");
   const [itemLocation, setItemLocation] = useState("");
   const [itemCondition, setItemCondition] = useState("");
   const [itemYear, setItemYear] = useState(0);
+  const [itemValue, setItemValue] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -23,6 +25,7 @@ const Collection = (props) => {
       condition: itemCondition,
       location: itemLocation,
       year: itemYear,
+      estimatedValue: itemValue,
       dateCreated: new Date(),
       collectionId: match.params.id,
     };
@@ -35,7 +38,7 @@ const Collection = (props) => {
     })
       .then((resp) => resp.json())
       .then((json) => {
-        console.log(json);
+        setItems([...items, json])
       });
     setItemName("");
     setItemCondition("");
@@ -51,6 +54,20 @@ const Collection = (props) => {
     toggleModal();
   };
   useEffect(() => {
+    fetch(`${BASE_URL}items/${match.params.id}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        console.log(json)
+        setItems(json);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     fetch(`${BASE_URL}collections/getById/${match.params.id}`, {
       method: "get",
       headers: {
@@ -86,18 +103,22 @@ const Collection = (props) => {
           <Table className="table-style" responsive>
             <thead>
               <tr>
-                <th>Heading 1</th>
-                <th>Heading 2</th>
-                <th>Heading 3</th>
+                <th>Name</th>
+                <th>Condition</th>
+                <th>Found at</th>
+                <th>Year</th>
+                <th>Estimated value</th>
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => {
+              {items.map((item, index) => {
                 return (
-                  <tr>
-                    <td>{item.h1}</td>
-                    <td>{item.h2}</td>
-                    <td>{item.h3}</td>
+                  <tr key={`${index}1`}>
+                    <td key={`${index}A`}>{item.name}</td>
+                    <td key={`${index}B`}>{item.condition}</td>
+                    <td key={`${index}C`}>{item.location}</td>
+                    <td key={`${index}D`}>{item.year}</td>
+                    <td key={`${index}E1`}>${item.estimatedValue}</td>
                   </tr>
                 );
               })}
@@ -154,6 +175,16 @@ const Collection = (props) => {
                 placeholder="1950"
                 onChange={(evt) => {
                   setItemYear(evt.target.value);
+                }}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Etimated value</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="125.99"
+                onChange={(evt) => {
+                  setItemValue(evt.target.value);
                 }}
               />
             </Form.Group>
