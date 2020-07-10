@@ -55,6 +55,21 @@ const Collection = (props) => {
     setItemYear(0);
     toggleModal();
   };
+  const handleDelete = (id) => {
+    fetch(`${BASE_URL}items/${id}`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        setItems(items.filter(item => item._id !== id));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   useEffect(() => {
     fetch(`${BASE_URL}items/${match.params.id}`, {
       method: "get",
@@ -127,14 +142,14 @@ const Collection = (props) => {
                           className="modify-icon"
                           icon={faEdit}
                           onClick={() => {
-                            console.log("modificar");
+                            console.log("eliminar");
                           }}
                         />
                         <FontAwesomeIcon
                           className="delete-icon"
                           icon={faTrash}
                           onClick={() => {
-                            console.log("eliminar");
+                            handleDelete(item._id);
                           }}
                         />
                       </td>

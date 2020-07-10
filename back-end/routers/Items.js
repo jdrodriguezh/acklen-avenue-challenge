@@ -25,7 +25,7 @@ item.get("/:id", (req,res)=>{
 
 item.delete("/:id", (req,res)=>{
   const { id } = req.params;
-  item.deleteOne({_id: id})
+  Item.deleteOne({_id: id})
     .then(data =>{
       res.status(200).send(data);
     }).catch(error => {
