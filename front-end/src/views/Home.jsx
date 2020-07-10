@@ -115,7 +115,7 @@ const Home = (props) => {
               <Form.Label>Collection Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Collection Name"
+                placeholder="My awesome coin collection"
                 onChange={(evt) => {
                   setCollectionName(evt.target.value);
                 }}
@@ -125,7 +125,7 @@ const Home = (props) => {
               <Form.Label>Collection Description</Form.Label>
               <Form.Control
                 type="textarea"
-                placeholder="Collection Name"
+                placeholder="This collection is about..."
                 onChange={(evt) => {
                   setCollectionDescription(evt.target.value);
                 }}

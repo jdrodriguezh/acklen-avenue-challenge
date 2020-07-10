@@ -31,7 +31,7 @@ collection.delete("/:id", (req, res) => {
       res.status(200).send(data);
     })
     .catch((error) => {
-      res.status(500).json({ err, success: false });
+      res.status(500).json({ error, success: false });
     });
 });
 
