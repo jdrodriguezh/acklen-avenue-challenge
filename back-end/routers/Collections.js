@@ -14,23 +14,25 @@ collection.post("/", (req, res) => {
 });
 
 collection.get("/", (req, res) => {
-  const { user } = req.params;
-  Collection.find({user:user},(error, data)=>{
-    if(error){
-      res.status(500).json({error});
-    }else{
+  const { body } = req;
+  Collection.find({ user: body.user }, (error, data) => {
+    if (error) {
+      res.status(500).json({ error });
+    } else {
       res.status(200).json(data);
     }
   });
 });
 
-collection.delete("/:id",(req,res)=>{
+collection.delete("/:id", (req, res) => {
   const { id } = req.params;
-  Collection.deleteOne({_id:id}).then(data => {
-    res.status(200).send(data);
-  }).catch(error =>{
-    res.status(500).json({err, success: false});
-  });
+  Collection.deleteOne({ _id: id })
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((error) => {
+      res.status(500).json({ err, success: false });
+    });
 });
 
 module.exports = collection;

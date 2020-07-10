@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Modal, Form } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -7,9 +7,11 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import CustomNavbar from "../components/CustomNavbar";
 import "../assets/Home.css";
 import collections from "./Collections";
+import BASE_URL from "./Variables";
 
 const Home = () => {
   const { user } = useAuth0();
+  //const [collections, setCollection] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
@@ -21,16 +23,22 @@ const Home = () => {
       name: collectionName,
       creationDate: new Date(),
       description: collectionDescription,
-      user: user.nickname
-    }
-    fetch("http://localhost:8080/collections/",{
-      method:"post",
+      user: user.nickname,
+    };
+    fetch(`${BASE_URL}collections/`, {
+      method: "post",
       body: JSON.stringify(body),
-      headers:{
-        "Content-Type":"application/json"
+      headers: {
+        "Content-Type": "application/json",
       },
-    }).then((resp) => resp.json()).then((json)=>{console.log(json)})
-    console.log(`Collection name: ${collectionName} Collection description: ${collectionDescription}`);
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        console.log(json);
+      });
+    console.log(
+      `Collection name: ${collectionName} Collection description: ${collectionDescription}`
+    );
     setCollectionName("");
     setCollectionDescription("");
     toggleModal();
@@ -40,6 +48,29 @@ const Home = () => {
     setCollectionDescription("");
     toggleModal();
   };
+  /*useEffect(() => {
+    (async () => {
+      try{
+        const loggedUser = await user;
+        fetch(`${BASE_URL}collections/`, {
+          method: "get",
+          body: JSON.stringify({ user: loggedUser.nickname }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((resp) => resp.json)
+          .then((json) => {
+            console.log(json);
+          });
+      } catch (error) {
+        console.log(error)
+      }
+    })();
+  }, [user]);*/
+  if(!user){
+    return <h1>Loading...</h1>;
+  }
   return (
     <>
       <CustomNavbar />
