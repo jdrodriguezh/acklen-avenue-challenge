@@ -26,7 +26,7 @@ const Home = (props) => {
       description: collectionDescription,
       user: user.sub,
     };
-    fetch(`/collections/`, {
+    fetch(`${BASE_URL}collections/`, {
       method: "post",
       body: JSON.stringify(body),
       headers: {
@@ -47,7 +47,7 @@ const Home = (props) => {
     toggleModal();
   };
   useEffect(() => {
-    fetch(`/collections/${user.sub}`, {
+    fetch(`${BASE_URL}collections/${user.sub}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
