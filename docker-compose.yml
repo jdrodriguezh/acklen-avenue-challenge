@@ -1,4 +1,4 @@
-version:"2"
+version: "2"
 services:
   client:
     build: ./front-end
