@@ -10,7 +10,6 @@ import "../assets/css/Landing.css";
 
 const Landing = (props) => {
   const { history } = props;
-  console.log(props);
   return (
     <>
       <CustomNavbar history={history} />
