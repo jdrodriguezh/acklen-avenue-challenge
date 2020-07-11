@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import treasure from "../assets/images/treasure.svg";
 import coin from "../assets/images/money.svg";
-import "../assets/Card.css";
+import "../assets/css/Card.css";
 
 const CollectionCard = (props) => {
   const { history, name, description, id } = props;

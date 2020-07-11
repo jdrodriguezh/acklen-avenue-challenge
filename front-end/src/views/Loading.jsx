@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Spinner } from "react-bootstrap";
-import "../assets/Home.css";
+import "../assets/css/Home.css";
 
 const Loading = () => {
   return (

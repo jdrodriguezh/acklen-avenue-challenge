@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CustomNavbar from "../components/CustomNavbar";
 import search from "../assets/images/search.svg";
-import "../assets/Collection.css";
+import "../assets/css/Collection.css";
 import BASE_URL from "./Variables";
 
 const Collection = (props) => {

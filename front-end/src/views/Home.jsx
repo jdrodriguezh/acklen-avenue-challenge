@@ -6,7 +6,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../views/Loading";
 import CustomNavbar from "../components/CustomNavbar";
 import CollectionCard from "../components/CollectionCard";
-import "../assets/Home.css";
+import "../assets/css/Home.css";
 import BASE_URL from "./Variables";
 
 const Home = (props) => {

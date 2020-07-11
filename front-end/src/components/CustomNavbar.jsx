@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Button } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../assets/images/diamond.svg";
-import "../assets/Navbar.css";
+import "../assets/css/Navbar.css";
 
 const CustomNavbar = (props) => {
   const { history } = props;
@@ -22,8 +22,8 @@ const CustomNavbar = (props) => {
   return (
     <Navbar className="justify-content-between nav">
       <Navbar.Brand href="/home" className="brand">
-        <img alt="Logo" src={logo} width="40" height="40" className="d-inline-block align-top"/>
-        {' Treasure Keeper'}
+        <img alt="Logo" src={logo} width="40" height="40" className="d-inline-block align-top" />
+        {" Treasure Keeper"}
       </Navbar.Brand>
       {isAuthenticated ? (
         <Button

@@ -8,7 +8,7 @@ import Home from "./views/Home";
 import Collection from "./views/Collection";
 import Landing from "./views/Landing";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/index.css";
+import "./assets/css/index.css";
 import * as serviceWorker from "./serviceWorker";
 
 const hist = createBrowserHistory();
