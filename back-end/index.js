@@ -13,7 +13,7 @@ const PORT = 8080;
 const app = express();
 
 mongoose
-  .connect("mongodb://159.89.156.23:27017/acklen", {
+  .connect("mongodb://mongo:27017/acklen", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
