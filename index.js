@@ -11,7 +11,8 @@ const items = require("./routers/Items");
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 
-const db = "mongodb+srv://josuer:josuer98@cluster0.8cid1.mongodb.net/acklen?retryWrites=true&w=majority";
+const db =
+  "mongodb+srv://josuer:josuer98@cluster0.8cid1.mongodb.net/acklen?retryWrites=true&w=majority";
 //const db = "mongodb://159.89.156.23:27017/acklen";
 
 const app = express();
@@ -54,9 +55,11 @@ app.use(express.static(path.join(__dirname, "client", "build")));
 app.use("/collections", collections);
 app.use("/items", items);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+if (process.env.NODE_ENV === "production") {
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Back-end running on PORT: ${PORT}`);

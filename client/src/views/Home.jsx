@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Container, Row, Col, Card, Button, Modal, Form } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,6 +27,7 @@ const Home = (props) => {
       description: collectionDescription,
       user: user.sub,
     };
+    /*axios.post("/collections/", body)*/
     fetch(`${BASE_URL}collections/`, {
       method: "post",
       body: JSON.stringify(body),
@@ -47,6 +49,12 @@ const Home = (props) => {
     toggleModal();
   };
   useEffect(() => {
+    axios.get("/collections/").then(result => {
+      console.log("axios: ")
+      console.log(result);
+    }).catch(error => {
+      console.log(error)
+    })
     fetch(`${BASE_URL}collections/${user.sub}`, {
       method: "get",
       headers: {

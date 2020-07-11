@@ -2,7 +2,6 @@
   "name": "acklen-challenge",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "@auth0/auth0-react": "^1.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
@@ -11,6 +10,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.1.1",
@@ -47,5 +47,6 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "prettier": "^2.0.5"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }
