@@ -84,9 +84,9 @@ const Home = (props) => {
                 </Card.Body>
               </Card>
             </Col>
-            {collections.map((collection) => {
+            {collections.map((collection, index) => {
               return (
-                <Col lg={3} md={6} xs={12} className="col-style">
+                <Col lg={3} md={6} xs={12} className="col-style" key={index}>
                   <CollectionCard
                     name={collection.name}
                     description={collection.description}
@@ -110,10 +110,15 @@ const Home = (props) => {
           <Modal.Title>Add Collection</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              handleSubmit();
+            }}>
             <Form.Group>
               <Form.Label>Collection Name</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="My awesome coin collection"
                 onChange={(evt) => {
@@ -124,6 +129,7 @@ const Home = (props) => {
             <Form.Group>
               <Form.Label>Collection Description</Form.Label>
               <Form.Control
+                required
                 type="textarea"
                 placeholder="This collection is about..."
                 onChange={(evt) => {
@@ -131,24 +137,20 @@ const Home = (props) => {
                 }}
               />
             </Form.Group>
+            <Modal.Footer>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  handleCancel();
+                }}>
+                Cancel
+              </Button>
+              <Button variant="success" type="submit">
+                Add!
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="danger"
-            onClick={() => {
-              handleCancel();
-            }}>
-            Cancel
-          </Button>
-          <Button
-            variant="success"
-            onClick={() => {
-              handleSubmit();
-            }}>
-            Add!
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

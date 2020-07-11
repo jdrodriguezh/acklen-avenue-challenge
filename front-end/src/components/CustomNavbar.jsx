@@ -27,7 +27,7 @@ const CustomNavbar = (props) => {
       </Navbar.Brand>
       {isAuthenticated ? (
         <Button
-          variant="danger"
+          className="login-button"
           onClick={() => {
             handleLogout();
           }}>
@@ -35,7 +35,7 @@ const CustomNavbar = (props) => {
         </Button>
       ) : (
         <Button
-          variant="primary"
+          className="login-button"
           onClick={() => {
             handleAuth();
           }}>

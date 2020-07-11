@@ -209,8 +209,8 @@ const Collection = (props) => {
             </Table>
           ) : (
             <div className="no-content">
-              <h1>This collection has no items. Go find some!</h1>
-              <img src={search} alt=""/>
+              <h1>This collection has no items. Add some!</h1>
+              <img src={search} alt="" />
             </div>
           )}
         </Container>
@@ -226,10 +226,15 @@ const Collection = (props) => {
           <Modal.Title>Add Item</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              handleSubmit();
+            }}>
             <Form.Group>
               <Form.Label>Item Name</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="1950s coin"
                 onChange={(evt) => {
@@ -240,6 +245,7 @@ const Collection = (props) => {
             <Form.Group>
               <Form.Label>Where was it found?</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="In the park"
                 onChange={(evt) => {
@@ -250,6 +256,7 @@ const Collection = (props) => {
             <Form.Group>
               <Form.Label>Item Condition</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="Mint condition, worn, damaged"
                 onChange={(evt) => {
@@ -260,6 +267,7 @@ const Collection = (props) => {
             <Form.Group>
               <Form.Label>Year</Form.Label>
               <Form.Control
+                required
                 type="number"
                 placeholder="1950"
                 onChange={(evt) => {
@@ -270,6 +278,7 @@ const Collection = (props) => {
             <Form.Group>
               <Form.Label>Etimated value</Form.Label>
               <Form.Control
+                required
                 type="number"
                 placeholder="125.99"
                 onChange={(evt) => {
@@ -277,24 +286,20 @@ const Collection = (props) => {
                 }}
               />
             </Form.Group>
+            <Modal.Footer>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  handleCancel();
+                }}>
+                Cancel
+              </Button>
+              <Button variant="success" type="submit">
+                Add!
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="danger"
-            onClick={() => {
-              handleCancel();
-            }}>
-            Cancel
-          </Button>
-          <Button
-            variant="success"
-            onClick={() => {
-              handleSubmit();
-            }}>
-            Add!
-          </Button>
-        </Modal.Footer>
       </Modal>
       <Modal
         show={showModifyModal}
@@ -307,10 +312,15 @@ const Collection = (props) => {
           <Modal.Title>Modify Item</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              handleModification();
+            }}>
             <Form.Group>
               <Form.Label>Item Name</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="1950s coin"
                 value={itemName}
@@ -322,6 +332,7 @@ const Collection = (props) => {
             <Form.Group>
               <Form.Label>Where was it found?</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="In the park"
                 value={itemLocation}
@@ -333,6 +344,7 @@ const Collection = (props) => {
             <Form.Group>
               <Form.Label>Item Condition</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="Mint condition, worn, damaged"
                 value={itemCondition}
@@ -344,6 +356,7 @@ const Collection = (props) => {
             <Form.Group>
               <Form.Label>Year</Form.Label>
               <Form.Control
+                required
                 type="number"
                 placeholder="1950"
                 value={itemYear}
@@ -355,6 +368,7 @@ const Collection = (props) => {
             <Form.Group>
               <Form.Label>Etimated value</Form.Label>
               <Form.Control
+                required
                 type="number"
                 placeholder="125.99"
                 value={itemValue}
@@ -363,24 +377,20 @@ const Collection = (props) => {
                 }}
               />
             </Form.Group>
+            <Modal.Footer>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  handleModifyCancel();
+                }}>
+                Discard
+              </Button>
+              <Button variant="success" type="submit">
+                Save
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="danger"
-            onClick={() => {
-              handleModifyCancel();
-            }}>
-            Discard
-          </Button>
-          <Button
-            variant="success"
-            onClick={() => {
-              handleModification();
-            }}>
-            Save
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

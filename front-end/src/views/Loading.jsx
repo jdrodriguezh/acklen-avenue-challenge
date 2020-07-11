@@ -6,7 +6,7 @@ const Loading = () => {
   return (
     <Container className="spinner-container" fluid>
       <Spinner animation="border" className="spinner" />
-      <h2>Loading...</h2>
+      <h2 className="loading">Loading...</h2>
     </Container>
   );
 };

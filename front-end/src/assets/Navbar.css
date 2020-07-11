@@ -2,3 +2,15 @@
   background-color: #14b1ab;
 }
 
+.brand{
+  color:white !important; 
+}
+
+.login-button{
+  color: white;
+  background-color: #14b1ab !important;
+  border: none !important;
+  border-color: transparent !important;
+  cursor: pointer;
+}
+
