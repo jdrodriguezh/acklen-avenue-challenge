@@ -17,9 +17,20 @@ const Collection = (props) => {
   const [itemCondition, setItemCondition] = useState("");
   const [itemYear, setItemYear] = useState(0);
   const [itemValue, setItemValue] = useState(0);
+  const [itemId, setItemId] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showModifyModal, setShowModifyModal] = useState(false);
   const toggleModal = () => {
     setShowModal(!showModal);
+  };
+  const toggleModifyModal = (item) => {
+    setItemName(item.name);
+    setItemLocation(item.location);
+    setItemCondition(item.condition);
+    setItemYear(item.year);
+    setItemValue(item.estimatedValue);
+    setItemId(item._id);
+    setShowModifyModal(true);
   };
   const handleSubmit = () => {
     const body = {
@@ -46,6 +57,7 @@ const Collection = (props) => {
     setItemCondition("");
     setItemLocation("");
     setItemYear(0);
+    setItemValue(0);
     toggleModal();
   };
   const handleCancel = () => {
@@ -53,7 +65,16 @@ const Collection = (props) => {
     setItemCondition("");
     setItemLocation("");
     setItemYear(0);
+    setItemValue(0);
     toggleModal();
+  };
+  const handleModifyCancel = () => {
+    setItemName("");
+    setItemCondition("");
+    setItemLocation("");
+    setItemYear(0);
+    setItemValue(0);
+    setShowModifyModal(false);
   };
   const handleDelete = (id) => {
     fetch(`${BASE_URL}items/${id}`, {
@@ -64,10 +85,38 @@ const Collection = (props) => {
     })
       .then((resp) => resp.json())
       .then((json) => {
-        setItems(items.filter(item => item._id !== id));
+        setItems(items.filter((item) => item._id !== id));
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+  const handleModification = () => {
+    const body = {
+      id: itemId,
+      name: itemName,
+      location: itemLocation,
+      condition: itemCondition,
+      year: itemYear,
+      estimatedValue: itemValue,
+    };
+    fetch(`${BASE_URL}items/`, {
+      method: "put",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        let tempItems = items.filter((item) => item._id !== itemId);
+        tempItems.push(body);
+        setItems(tempItems);
+        setShowModifyModal(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setShowModifyModal(false);
       });
   };
   useEffect(() => {
@@ -104,18 +153,18 @@ const Collection = (props) => {
       <CustomNavbar />
       <Container className="main-container" fluid>
         <Container className="inner-container" fluid>
-          <h1>
-            {`${collectionName} `}
+          <div className="first-line">
+            <h1>{collectionName}</h1>
             <Button
               variant="success"
               onClick={() => {
                 toggleModal();
               }}>
-              Add entry
+              Add item
             </Button>
-          </h1>
+          </div>
           <h3>{collectionDescription}</h3>
-          <br />
+          <hr />
           {items.length > 0 ? (
             <Table className="table-style" responsive>
               <thead>
@@ -142,7 +191,7 @@ const Collection = (props) => {
                           className="modify-icon"
                           icon={faEdit}
                           onClick={() => {
-                            console.log("eliminar");
+                            toggleModifyModal(item);
                           }}
                         />
                         <FontAwesomeIcon
@@ -159,7 +208,9 @@ const Collection = (props) => {
               </tbody>
             </Table>
           ) : (
-            <h1>This collection has no elements. Go find some!</h1>
+            <div className="no-content">
+              <h1>This collection has no elements. Go find some!</h1>
+            </div>
           )}
         </Container>
       </Container>
@@ -241,6 +292,92 @@ const Collection = (props) => {
               handleSubmit();
             }}>
             Add!
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal
+        show={showModifyModal}
+        onHide={() => {
+          setShowModifyModal(false);
+        }}
+        backdrop="static"
+        keyboard={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modify Item</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Item Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="1950s coin"
+                value={itemName}
+                onChange={(evt) => {
+                  setItemName(evt.target.value);
+                }}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Where was it found?</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="In the park"
+                value={itemLocation}
+                onChange={(evt) => {
+                  setItemLocation(evt.target.value);
+                }}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Item Condition</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Mint condition, worn, damaged"
+                value={itemCondition}
+                onChange={(evt) => {
+                  setItemCondition(evt.target.value);
+                }}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Year</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="1950"
+                value={itemYear}
+                onChange={(evt) => {
+                  setItemYear(evt.target.value);
+                }}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Etimated value</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="125.99"
+                value={itemValue}
+                onChange={(evt) => {
+                  setItemValue(evt.target.value);
+                }}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="danger"
+            onClick={() => {
+              handleModifyCancel();
+            }}>
+            Discard
+          </Button>
+          <Button
+            variant="success"
+            onClick={() => {
+              handleModification();
+            }}>
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
