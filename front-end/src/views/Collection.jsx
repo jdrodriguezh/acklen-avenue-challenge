@@ -209,9 +209,7 @@ const Collection = (props) => {
             </Table>
           ) : (
             <div className="no-content">
-              <div className="fill-width">
-                <h1>This collection has no items. Go find some!</h1>
-              </div>
+              <h1>This collection has no items. Go find some!</h1>
               <img src={search} alt=""/>
             </div>
           )}

@@ -1,0 +1,64 @@
+.main-container {
+  background-color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100% !important;
+  min-height: 100vh;
+  max-height: fit-content;
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+}
+
+.inner-container {
+  background-color: brown;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.col-style {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.col-style2 {
+  display: block;
+  justify-content: center;
+  text-align: center;
+}
+
+.image-container2 {
+  display: flex;
+  justify-content: left;
+}
+
+.diamond-image img {
+  width: 120px;
+}
+
+.image-container3 {
+  display: block;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
+.treasure-image img {
+  width: 120px;
+}
+
+.landing-title {
+  margin-left: 20px;
+  padding-top: 35px;
+}
+
+.add-spacing {
+  padding: 40px;
+}
+
+.separate-top {
+  margin-top: 40px;
+}

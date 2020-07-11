@@ -35,17 +35,6 @@ item.delete("/:id", (req, res) => {
     });
 });
 
-item.delete("/deleteCollection/:id", (req, res) => {
-  const { id } = req.params;
-  Item.deleteMany({ collectionId: id })
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((error) => {
-      res.status(500).json({ error, success: false });
-    });
-});
-
 item.put("/", (req, res) => {
   const { body } = req;
   const { id } = body;
