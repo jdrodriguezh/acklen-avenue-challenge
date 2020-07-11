@@ -12,6 +12,7 @@ h2 {
   max-height: fit-content;
   padding-left: 5% !important;
   padding-right: 5% !important;
+  min-width: 100%;
 }
 
 .inner-container {
