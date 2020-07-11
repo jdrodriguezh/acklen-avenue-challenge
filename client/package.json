@@ -2,6 +2,7 @@
   "name": "acklen-challenge",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@auth0/auth0-react": "^1.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
