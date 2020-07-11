@@ -46,4 +46,15 @@ collection.delete("/:id", (req, res) => {
     });
 });
 
+collection.put("/", (req, res) => {
+  const { body } = req;
+  const { id } = body;
+  Collection.updateOne({ _id: id }, { $set: { ...body } })
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((error) => {
+      res.status(500).json({ error, success: false });
+    });
+});
 module.exports = collection;

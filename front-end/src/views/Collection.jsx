@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Modal, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import CustomNavbar from "../components/CustomNavbar";
 import search from "../assets/images/search.svg";
 import "../assets/css/Collection.css";
@@ -11,6 +11,8 @@ const Collection = (props) => {
   const { match } = props;
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
+  const [collectionNewName, setCollectionNewName] = useState("");
+  const [collectionNewDescription, setCollectionNewDescription] = useState("");
   const [items, setItems] = useState([]);
   const [itemName, setItemName] = useState("");
   const [itemLocation, setItemLocation] = useState("");
@@ -20,6 +22,7 @@ const Collection = (props) => {
   const [itemId, setItemId] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showModifyModal, setShowModifyModal] = useState(false);
+  const [showCollectionModal, setShowCollectionModal] = useState(false);
   const toggleModal = () => {
     setShowModal(!showModal);
   };
@@ -67,6 +70,30 @@ const Collection = (props) => {
     setItemYear(0);
     setItemValue(0);
     toggleModal();
+  };
+  const handleCollectionSubmit = () => {
+    const body = {
+      id: match.params.id,
+      name: collectionNewName,
+      description: collectionNewDescription,
+    };
+    fetch(`${BASE_URL}collections/`, {
+      method: "put",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        setCollectionName(collectionNewName);
+        setCollectionDescription(collectionNewDescription);
+        setShowCollectionModal(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setShowCollectionModal(false);
+      });
   };
   const handleModifyCancel = () => {
     setItemName("");
@@ -155,13 +182,34 @@ const Collection = (props) => {
         <Container className="inner-container" fluid>
           <div className="first-line">
             <h1>{collectionName}</h1>
-            <Button
-              variant="success"
-              onClick={() => {
-                toggleModal();
-              }}>
-              Add item
-            </Button>
+            <div>
+              <FontAwesomeIcon
+                className="delete-icon-head"
+                icon={faTrash}
+                size="2x"
+                onClick={() => {
+                  console.log("delete");
+                }}
+              />
+              <FontAwesomeIcon
+                className="edit-icon-head"
+                icon={faEdit}
+                size="2x"
+                onClick={() => {
+                  setCollectionNewName(collectionName);
+                  setCollectionNewDescription(collectionDescription);
+                  setShowCollectionModal(true);
+                }}
+              />
+              <FontAwesomeIcon
+                className="add-icon-head"
+                icon={faPlus}
+                size="2x"
+                onClick={() => {
+                  toggleModal();
+                }}
+              />
+            </div>
           </div>
           <h3>{collectionDescription}</h3>
           <hr />
@@ -276,7 +324,7 @@ const Collection = (props) => {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Etimated value</Form.Label>
+              <Form.Label>Estimated value</Form.Label>
               <Form.Control
                 required
                 type="number"
@@ -387,6 +435,61 @@ const Collection = (props) => {
               </Button>
               <Button variant="success" type="submit">
                 Save
+              </Button>
+            </Modal.Footer>
+          </Form>
+        </Modal.Body>
+      </Modal>
+      <Modal
+        show={showCollectionModal}
+        onHide={() => {
+          setShowCollectionModal(false);
+        }}
+        backdrop="static"
+        keyboard={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Collection</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              handleCollectionSubmit();
+            }}>
+            <Form.Group>
+              <Form.Label>Collection Name</Form.Label>
+              <Form.Control
+                required
+                value={collectionNewName}
+                type="text"
+                placeholder="My awesome coin collection"
+                onChange={(evt) => {
+                  setCollectionNewName(evt.target.value);
+                }}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Collection Description</Form.Label>
+              <Form.Control
+                required
+                value={collectionNewDescription}
+                type="textarea"
+                placeholder="This collection is about..."
+                onChange={(evt) => {
+                  setCollectionNewDescription(evt.target.value);
+                }}
+              />
+            </Form.Group>
+            <Modal.Footer>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  setShowCollectionModal(false);
+                }}>
+                Discard changes
+              </Button>
+              <Button variant="success" type="submit">
+                Save!
               </Button>
             </Modal.Footer>
           </Form>

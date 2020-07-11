@@ -6,11 +6,17 @@
   color:white !important; 
 }
 
+.brand:hover{
+  cursor: pointer !important;
+}
+
 .login-button{
   color: white;
   background-color: #14b1ab !important;
   border: none !important;
   border-color: transparent !important;
-  cursor: pointer;
 }
 
+.login-button.brand:hover{
+  cursor: pointer;
+}

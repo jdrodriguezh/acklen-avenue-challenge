@@ -56,6 +56,42 @@ h3 {
   color: red;
 }
 
+.delete-icon-head {
+  margin: 5px;
+  color:white;
+}
+
+.delete-icon-head:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  transition: transform 400ms;
+  color: red;
+}
+
+.add-icon-head {
+  margin: 5px;
+  color:white;
+}
+
+.add-icon-head:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  transition: transform 400ms;
+  color: white;
+}
+
+.edit-icon-head {
+  margin: 5px;
+  color:white;
+}
+
+.edit-icon-head:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  transition: transform 400ms;
+  color: green;
+}
+
 .modify-icon {
   margin: 5px;
 }
