@@ -8,7 +8,7 @@ import "../assets/css/Collection.css";
 import BASE_URL from "./Variables";
 
 const Collection = (props) => {
-  const { match } = props;
+  const { match, history } = props;
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
   const [collectionNewName, setCollectionNewName] = useState("");
@@ -118,6 +118,34 @@ const Collection = (props) => {
         console.log(error);
       });
   };
+  const handleCollectionDelete = () => {
+    const id = match.params.id;
+    fetch(`${BASE_URL}items/deleteCollection/${id}`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        fetch(`${BASE_URL}collections/${id}`, {
+          method: "delete",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((resp) => resp.json())
+          .then((json) => {
+            history.push("/home");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const handleModification = () => {
     const body = {
       id: itemId,
@@ -188,7 +216,7 @@ const Collection = (props) => {
                 icon={faTrash}
                 size="2x"
                 onClick={() => {
-                  console.log("delete");
+                  handleCollectionDelete();
                 }}
               />
               <FontAwesomeIcon
