@@ -28,9 +28,19 @@ h1, h3{
 }
 
 .no-content{
-  display: flex;
+  display: block;
   text-align: center;
   justify-content: center;
+  width: 100%;
+}
+
+.no-content img{
+  margin-top: 20px;
+  width:200px;
+}
+
+.fill-width{
+  width: 100%;
 }
 
 .table-style{

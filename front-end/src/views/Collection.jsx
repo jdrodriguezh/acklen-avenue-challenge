@@ -3,8 +3,8 @@ import { Container, Table, Button, Modal, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CustomNavbar from "../components/CustomNavbar";
+import search from "../assets/images/search.svg";
 import "../assets/Collection.css";
-//import items from "./Items";
 import BASE_URL from "./Variables";
 
 const Collection = (props) => {
@@ -209,7 +209,10 @@ const Collection = (props) => {
             </Table>
           ) : (
             <div className="no-content">
-              <h1>This collection has no elements. Go find some!</h1>
+              <div className="fill-width">
+                <h1>This collection has no items. Go find some!</h1>
+              </div>
+              <img src={search} alt=""/>
             </div>
           )}
         </Container>
