@@ -17,7 +17,7 @@ services:
   mongo:
     image: mongo
     environment:
-      - MONGO_INITDB_DATABASE: "acklen"
+      - MONGO_INITDB_DATABASE:"acklen"
     volumes:
       - ./volumes/db:/data/db
     ports:
