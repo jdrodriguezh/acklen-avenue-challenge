@@ -1,3 +1,7 @@
+h2 {
+  color: white;
+}
+
 .main-container {
   background-color: white !important;
   display: flex;
@@ -22,13 +26,13 @@
   text-align: center;
 }
 
-.col-style2 {
+.second-row-col-style {
   display: block;
   justify-content: center;
   text-align: center;
 }
 
-.image-container2 {
+.first-row-image-container {
   display: flex;
   justify-content: left;
 }
@@ -37,13 +41,12 @@
   width: 120px;
 }
 
-.image-container3 {
+.second-row-image-container {
   display: block;
   text-align: center;
   justify-content: center;
   width: 100%;
   margin-bottom: 20px;
-
 }
 
 .treasure-image img {
@@ -61,4 +64,19 @@
 
 .separate-top {
   margin-top: 40px;
+}
+
+.third-row-image-container {
+  display: flex;
+  justify-content: left;
+}
+
+.programmer-image img {
+  width: 250px;
+}
+
+.about {
+  margin-left: 25px;
+  padding-top: 35px;
+  text-align: left;
 }
