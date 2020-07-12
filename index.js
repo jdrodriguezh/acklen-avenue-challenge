@@ -50,8 +50,8 @@ const accessLogStream = fs.createWriteStream(
 );
 app.use(morgan("tiny", { stream: accessLogStream }));
 
-app.use("/collections", collections);
-app.use("/items", items);
+app.use("/api/collections", collections);
+app.use("/api/items", items);
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 app.get("*", (req, res) => {
