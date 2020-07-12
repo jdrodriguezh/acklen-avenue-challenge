@@ -49,9 +49,9 @@ const Home = (props) => {
     toggleModal();
   };
   useEffect(() => {
-    axios.get("/collections/").then(result => {
+    axios.get(`/collections/${user.sub}`).then(result => {
       console.log("axios: ")
-      console.log(result);
+      console.log(result.data);
     }).catch(error => {
       console.log(error)
     })
