@@ -50,12 +50,12 @@ const accessLogStream = fs.createWriteStream(
 );
 app.use(morgan("tiny", { stream: accessLogStream }));
 
-app.use(express.static(path.join(__dirname, "client", "build")));
-
 app.use("/collections", collections);
 app.use("/items", items);
 
 if (process.env.NODE_ENV === "production") {
+  alert(process.env.PORT);
+  app.use(express.static(path.join(__dirname, "client", "build")));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
