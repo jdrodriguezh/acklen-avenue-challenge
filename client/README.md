@@ -1,4 +1,4 @@
-# Acklen Avenue Challenge made with :heart: and :coffee:
+# Acklen Avenue Challenge (Client) made with :heart: and :coffee:
 
 A project I made part of the Acklen Avenue hiring process.
 
@@ -14,7 +14,7 @@ To get accepted into Acklen Avenue to do my internship.
 
 >  cd  acklen-avenue-challenge
 
->  cd  front-end
+>  cd  client
 
 > npm install
 
