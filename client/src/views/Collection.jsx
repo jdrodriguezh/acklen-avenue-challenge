@@ -50,6 +50,7 @@ const Collection = (props) => {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     })
       .then((resp) => resp.json())
@@ -82,6 +83,7 @@ const Collection = (props) => {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     })
       .then((resp) => resp.json())
@@ -108,6 +110,7 @@ const Collection = (props) => {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     })
       .then((resp) => resp.json())
@@ -124,6 +127,7 @@ const Collection = (props) => {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     })
       .then((resp) => resp.json())
@@ -132,6 +136,7 @@ const Collection = (props) => {
           method: "delete",
           headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
           },
         })
           .then((resp) => resp.json())
@@ -160,6 +165,7 @@ const Collection = (props) => {
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     })
       .then((resp) => resp.json())
@@ -179,6 +185,7 @@ const Collection = (props) => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     })
       .then((resp) => resp.json())
@@ -192,6 +199,7 @@ const Collection = (props) => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     })
       .then((resp) => resp.json())
