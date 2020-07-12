@@ -59,6 +59,7 @@ const Home = (props) => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     })
       .then((resp) => resp.json())
