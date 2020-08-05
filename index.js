@@ -11,9 +11,7 @@ const items = require("./routers/Items");
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 
-const db =
-  "mongodb+srv://josuer:josuer98@cluster0.8cid1.mongodb.net/acklen?retryWrites=true&w=majority";
-//const db = "mongodb://159.89.156.23:27017/acklen";
+const db = process.env.MONGOLAB_URI;
 
 const app = express();
 
